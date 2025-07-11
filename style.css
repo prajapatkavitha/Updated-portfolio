@@ -1,0 +1,1066 @@
+/* Variables for easy theme switching */
+:root {
+    /* Light Mode */
+    --light-background: #f4f7f6;
+    --light-text: #333;
+    --light-heading: #222;
+    --light-accent: #00bcd4; /* Vibrant Cyan - for links, highlights, buttons */
+    --light-secondary-accent: #6c757d; /* Grayish */
+    --light-card-background: #ffffff;
+    --light-border: #e0e0e0;
+    --light-shadow: rgba(0, 0, 0, 0.1);
+    --light-hover-bg: #e9ecef;
+
+    /* Dark Mode */
+    --dark-background: #1a1a2e; /* Very dark background for the whole page */
+    --dark-text: #e0e0e0;
+    --dark-heading: #ffffff;
+    --dark-accent: #7fffd4; /* Lighter aquamarine for dark mode accent */
+    --dark-secondary-accent: #5a7d7d;
+    --dark-card-background: #16213e;
+    --dark-border: #2e3a59;
+    --dark-shadow: rgba(0, 0, 0, 0.3);
+    --dark-hover-bg: #2b3a5c;
+
+    /* General */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+    --border-radius: 8px;
+    --transition-speed: 0.3s ease-in-out; /* Standard transition duration for most elements */
+    --fast-transition: 0.15s ease-out; /* Faster for quick feedback like cursor, subtle hovers */
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-background);
+    color: var(--light-text);
+    transition: background-color var(--transition-speed), color var(--transition-speed); /* Smooth theme transition */
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+
+/* Dark Mode Toggle */
+body.dark-mode {
+    background-color: var(--dark-background);
+    color: var(--dark-text);
+}
+
+body.dark-mode header,
+body.dark-mode .container,
+body.dark-mode .experience-card,
+body.dark-mode .project-card,
+body.dark-mode .certification-card,
+body.dark-mode .contact-form,
+body.dark-mode .skill-bar-container,
+body.dark-mode .skill-bar,
+body.dark-mode .profile-pic,
+body.dark-mode .btn,
+body.dark-mode .btn-small,
+body.dark-mode .social-links a,
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+    transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--fast-transition);
+}
+
+
+/* Custom Cursor */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--light-accent);
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: transform 0.1s ease-out, background-color var(--transition-speed), width 0.2s, height 0.2s; /* Faster transform for responsiveness */
+    mix-blend-mode: difference; /* For better visibility on different backgrounds */
+}
+
+body.dark-mode .custom-cursor {
+    background-color: var(--dark-accent);
+}
+
+/* Optional: Enlarge cursor on hover over interactive elements */
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor,
+input:hover ~ .custom-cursor,
+textarea:hover ~ .custom-cursor,
+.btn:hover ~ .custom-cursor,
+.btn-small:hover ~ .custom-cursor,
+.profile-pic:hover ~ .custom-cursor,
+.experience-card:hover ~ .custom-cursor,
+.project-card:hover ~ .custom-cursor,
+.certification-card:hover ~ .custom-cursor {
+    width: 30px;
+    height: 30px;
+}
+
+
+/* General Layout */
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px; /* Increased padding for better spacing */
+    background-color: var(--light-card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px var(--light-shadow); /* Softer shadow */
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+body.dark-mode .container {
+    background-color: var(--dark-card-background);
+    box-shadow: 0 4px 15px var(--dark-shadow);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-primary);
+    color: var(--light-heading);
+    margin-bottom: 20px;
+    text-align: center;
+    transition: color var(--transition-speed);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: var(--dark-heading);
+}
+
+h2 {
+    font-size: 2.5em;
+    padding-bottom: 10px;
+    position: relative;
+    display: inline-block; /* For underline effect */
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--light-accent);
+    border-radius: 2px;
+    transition: background-color var(--transition-speed);
+}
+
+body.dark-mode h2::after {
+    background-color: var(--dark-accent);
+}
+
+.section-description {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    color: var(--light-secondary-accent);
+    transition: color var(--transition-speed);
+}
+
+body.dark-mode .section-description {
+    color: var(--dark-secondary-accent);
+}
+
+/* Header */
+header {
+    background-color: var(--light-card-background);
+    color: var(--light-text);
+    padding: 20px 40px; /* Increased padding */
+    box-shadow: 0 2px 10px var(--light-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* Name left, options right */
+    align-items: center;
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+body.dark-mode header {
+    background-color: var(--dark-card-background);
+    box-shadow: 0 2px 10px var(--dark-shadow);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+header h1 a {
+    color: var(--light-heading);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+body.dark-mode header h1 a {
+    color: var(--dark-heading);
+}
+
+header h1 a:hover {
+    color: var(--light-accent);
+}
+body.dark-mode header h1 a:hover {
+    color: var(--dark-accent);
+}
+
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Space between nav items */
+}
+
+nav ul li a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    position: relative;
+    padding: 5px 0;
+    transition: color var(--transition-speed);
+}
+
+body.dark-mode nav ul li a {
+    color: var(--dark-text);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--light-accent);
+    transition: width var(--transition-speed);
+}
+body.dark-mode nav ul li a::after {
+    background-color: var(--dark-accent);
+}
+
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: var(--light-accent);
+}
+body.dark-mode nav ul li a:hover {
+    color: var(--dark-accent);
+}
+
+
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--light-text); /* Default color for the icon */
+    transition: color var(--transition-speed), transform 0.2s ease-out; /* Smooth color and transform */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#darkModeToggle:hover {
+    transform: scale(1.1);
+    color: var(--light-accent); /* A subtle highlight on hover */
+}
+body.dark-mode #darkModeToggle {
+    color: var(--dark-text);
+}
+body.dark-mode #darkModeToggle:hover {
+    color: var(--dark-accent);
+}
+
+/* Hero Section (Introduction Page) */
+.hero {
+    background-color: #0d0d1e; /* Very dark background */
+    color: white;
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    position: relative;
+    overflow: hidden;
+    /* No background image or parallax for this design */
+    background-image: none;
+    background-attachment: scroll;
+}
+
+.hero-content-wrapper { /* New wrapper for text and image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 80px; /* Increased space between text and image */
+    flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+}
+
+.hero-text-area { /* Container for all left-aligned text and buttons */
+    flex: 1;
+    min-width: 350px; /* Ensure enough space for text */
+    text-align: left;
+    /* Animations can be added here if desired, similar to original .hero-text-content */
+}
+
+.greeting {
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 5px;
+    font-family: var(--font-secondary);
+}
+
+.hero-name {
+    font-size: 3.5em; /* Larger name */
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    text-align: left; /* Ensure left alignment */
+}
+
+/* Remove the ::after pseudo-element for hero-name as it's not present in the example */
+.hero-name::after {
+    display: none;
+}
+
+.hero-role {
+    font-size: 2em;
+    color: white;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.hero-role .highlight {
+    color: var(--dark-accent); /* Use the vibrant accent color for 'Developer' */
+    font-weight: 700;
+}
+
+.hero-description {
+    font-size: 1.1em;
+    color: #e0e0e0; /* Slightly lighter white for readability */
+    margin-bottom: 40px;
+    max-width: 600px; /* Constrain text width */
+    text-align: left;
+}
+
+.hero-social-links {
+    display: flex;
+    gap: 20px; /* Space between social icons */
+    margin-bottom: 40px;
+    justify-content: flex-start; /* Align icons to the left */
+}
+
+.hero-social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px; /* Size of the circular icon */
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--dark-accent); /* Accent color for background */
+    color: #1a1a2e; /* Dark icon color on accent background */
+    font-size: 1.5em;
+    transition: background-color 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for icons */
+}
+
+.hero-social-links a:hover {
+    background-color: #6effe6; /* Slightly lighter accent on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.download-cv-btn {
+    /* Styles for this button are mostly covered by .btn */
+    font-size: 1.1em;
+    padding: 15px 35px;
+    border: 2px solid var(--dark-accent); /* Add border matching accent */
+    background-color: var(--dark-accent); /* Set button background to accent */
+    color: #1a1a2e; /* Dark text on accent background */
+    font-weight: 600;
+}
+
+.download-cv-btn:hover {
+    background-color: #6effe6; /* Lighter accent on hover */
+    border-color: #6effe6;
+}
+
+.hero-image-area { /* Container for the image */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    position: relative; /* Needed for pseudo-elements or specific positioning */
+}
+
+.profile-hex-img {
+    width: 400px; /* Increased size */
+    height: 400px; /* Increased size */
+    object-fit: cover;
+    /* Hexagonal shape using clip-path */
+    clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
+    border: 5px solid transparent; /* Transparent border, glow is handled by shadow */
+    box-shadow: 0 0 0 5px var(--dark-accent), /* Inner accent border */
+                0 0 20px 10px rgba(127, 255, 212, 0.6), /* Stronger glow (aquamarine) */
+                0 0 40px 20px rgba(127, 255, 212, 0.4); /* Fainter, wider glow */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    will-change: transform, box-shadow;
+}
+
+.profile-hex-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 5px var(--dark-accent),
+                0 0 25px 12px rgba(127, 255, 212, 0.7),
+                0 0 50px 25px rgba(127, 255, 212, 0.5);
+}
+
+
+/* General Button Styles (apply to all .btn) */
+.btn {
+    display: inline-block;
+    background-color: var(--light-accent); /* Default for light mode */
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px; /* Pill shape */
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color var(--transition-speed), transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* General softer shadow */
+    border: none; /* Ensure no default button border */
+    cursor: pointer;
+}
+
+body.dark-mode .btn {
+    background-color: var(--dark-accent); /* Default for dark mode */
+    color: #1a1a2e; /* Dark text on dark accent background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    background-color: #008c9e; /* Darker cyan for light mode hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+body.dark-mode .btn:hover {
+    background-color: #6effe6; /* Lighter aquamarine for dark mode hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+.btn:focus-visible {
+    outline: 2px solid var(--light-accent);
+    outline-offset: 3px;
+}
+body.dark-mode .btn:focus-visible {
+    outline-color: var(--dark-accent);
+}
+
+
+/* About Section */
+.about-content {
+    display: flex;
+    flex-direction: row-reverse; /* Changed: Image/buttons left, text right */
+    align-items: flex-start; /* Align items to the top */
+    gap: 50px; /* Space between text and image/buttons */
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0; /* Add some padding */
+}
+
+.about-text {
+    flex: 2; /* Text takes more space */
+    min-width: 300px; /* Ensure text doesn't shrink too much */
+    text-align: left;
+}
+
+.about-image-and-buttons {
+    flex: 1; /* Image and buttons take less space */
+    display: flex;
+    flex-direction: column; /* Stack image and buttons vertically */
+    align-items: center; /* Center image and buttons horizontally within their column */
+    gap: 20px;
+    min-width: 250px; /* Ensure content doesn't shrink too much */
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--light-accent);
+    box-shadow: 0 5px 15px var(--light-shadow); /* More pronounced shadow */
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed), transform 0.3s ease-out; /* Smooth transition */
+}
+
+body.dark-mode .profile-pic {
+    border-color: var(--dark-accent);
+    box-shadow: 0 5px 15px var(--dark-shadow);
+}
+
+.profile-pic:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 8px 20px var(--light-shadow); /* Deeper shadow on hover */
+}
+body.dark-mode .profile-pic:hover {
+    box-shadow: 0 8px 20px var(--dark-shadow);
+}
+
+
+.about-actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 15px; /* Space between buttons */
+    width: 100%; /* Make buttons take full width of their container */
+    max-width: 250px; /* Limit button group width */
+}
+
+.about-actions .btn {
+    width: 100%; /* Make individual buttons fill the `about-actions` width */
+    text-align: center; /* Center text in buttons */
+}
+
+
+.about-content p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    text-align: left;
+    color: var(--light-text);
+    font-family: var(--font-secondary);
+}
+body.dark-mode .about-content p {
+    color: var(--dark-text);
+}
+
+.academic-highlight {
+    font-weight: bold;
+    margin-top: 25px;
+    color: var(--light-accent); /* Highlight academic info */
+}
+body.dark-mode .academic-highlight {
+    color: var(--dark-accent);
+}
+
+/* Experience Section */
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.experience-card {
+    background-color: var(--light-card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px var(--light-shadow);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color var(--transition-speed); /* Smooth hover */
+    border: 1px solid var(--light-border);
+    display: flex; /* Added flex for internal layout, especially for actions */
+    flex-direction: column;
+    justify-content: space-between; /* Push content up, actions down */
+    will-change: transform, box-shadow; /* Optimize for animation */
+}
+
+body.dark-mode .experience-card {
+    background-color: var(--dark-card-background);
+    box-shadow: 0 4px 10px var(--dark-shadow);
+    border: 1px solid var(--dark-border);
+}
+
+
+.experience-card:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: 0 12px 25px var(--light-shadow); /* More pronounced shadow */
+}
+body.dark-mode .experience-card:hover {
+    box-shadow: 0 12px 25px var(--dark-shadow);
+}
+
+
+.experience-card h3 {
+    color: var(--light-heading);
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    text-align: left;
+    transition: color var(--transition-speed);
+}
+body.dark-mode .experience-card h3 {
+    color: var(--dark-heading);
+}
+
+
+.experience-card .company-date {
+    font-style: italic;
+    color: var(--light-secondary-accent);
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    transition: color var(--transition-speed);
+}
+body.dark-mode .experience-card .company-date {
+    color: var(--dark-secondary-accent);
+}
+
+
+.experience-card ul {
+    list-style: disc;
+    margin-left: 20px;
+    padding: 0;
+    color: var(--light-text);
+    margin-bottom: 20px; /* Space between list and potential buttons */
+    flex-grow: 1; /* Allow ul to take available space */
+}
+body.dark-mode .experience-card ul {
+    color: var(--dark-text);
+}
+
+.experience-card ul li {
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+
+.experience-actions {
+    margin-top: auto; /* Pushes action to the bottom */
+    text-align: center;
+}
+
+/* Skills Section */
+.skills-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.skill-item p {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--light-heading);
+    transition: color var(--transition-speed);
+}
+body.dark-mode .skill-item p {
+    color: var(--dark-heading);
+}
+
+.skill-bar-container {
+    background-color: var(--light-border);
+    border-radius: 5px;
+    height: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: background-color var(--transition-speed);
+}
+body.dark-mode .skill-bar-container {
+    background-color: var(--dark-border);
+}
+
+
+.skill-bar {
+    height: 100%;
+    background-color: var(--light-accent);
+    width: 0; /* Initial width for animation */
+    border-radius: 5px;
+    transition: width 1.5s ease-out, background-color var(--transition-speed); /* Smooth fill animation */
+}
+body.dark-mode .skill-bar {
+    background-color: var(--dark-accent);
+}
+
+
+/* Projects Section */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.project-card {
+    background-color: var(--light-card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px var(--light-shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color var(--transition-speed);
+    border: 1px solid var(--light-border);
+    display: flex;
+    flex-direction: column;
+    will-change: transform, box-shadow; /* Optimize for animation */
+}
+
+body.dark-mode .project-card {
+    background-color: var(--dark-card-background);
+    box-shadow: 0 4px 10px var(--dark-shadow);
+    border: 1px solid var(--dark-border);
+}
+
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px var(--light-shadow); /* More pronounced shadow */
+}
+body.dark-mode .project-card:hover {
+    box-shadow: 0 12px 25px var(--dark-shadow);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease-out; /* Smooth image zoom */
+}
+.project-card:hover img {
+    transform: scale(1.05); /* Slight zoom on image hover */
+}
+
+
+.project-card h3 {
+    font-size: 1.5em;
+    margin: 20px 20px 10px;
+    color: var(--light-heading);
+    text-align: left;
+    transition: color var(--transition-speed);
+}
+body.dark-mode .project-card h3 {
+    color: var(--dark-heading);
+}
+
+.project-card p {
+    font-size: 0.95em;
+    margin: 0 20px 20px;
+    color: var(--light-text);
+    flex-grow: 1; /* Ensures description takes available space */
+}
+body.dark-mode .project-card p {
+    color: var(--dark-text);
+}
+
+
+.project-links {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-wrap: wrap; /* Allow links to wrap */
+    gap: 10px;
+    margin-top: auto; /* Push links to the bottom */
+}
+
+.btn-small {
+    padding: 8px 18px;
+    font-size: 0.9em;
+    border-radius: 25px;
+    background-color: var(--light-secondary-accent);
+    color: rgb(11, 11, 11);
+    text-decoration: none;
+    transition: background-color var(--transition-speed), transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+body.dark-mode .btn-small {
+    background-color: var(--dark-secondary-accent);
+}
+
+.btn-small.live-demo-btn,
+.experience-actions .btn-small { /* Apply primary accent to live demo and experience cert buttons */
+    background-color: var(--light-accent);
+}
+body.dark-mode .btn-small.live-demo-btn,
+body.dark-mode .experience-actions .btn-small {
+    background-color: var(--dark-accent);
+}
+
+
+.btn-small:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+.btn-small:focus-visible { /* For accessibility */
+    outline: 2px solid var(--light-accent);
+    outline-offset: 2px;
+}
+body.dark-mode .btn-small:focus-visible {
+    outline-color: var(--dark-accent);
+}
+
+/* Certifications Section */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.certification-card {
+    background-color: var(--light-card-background);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 8px var(--light-shadow);
+    text-align: center;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color var(--transition-speed);
+    border: 1px solid var(--light-border);
+    will-change: transform, box-shadow; /* Optimize for animation */
+}
+body.dark-mode .certification-card {
+    background-color: var(--dark-card-background);
+    box-shadow: 0 3px 8px var(--dark-shadow);
+    border: 1px solid var(--dark-border);
+}
+
+
+.certification-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--light-shadow); /* More pronounced shadow */
+}
+body.dark-mode .certification-card:hover {
+    box-shadow: 0 8px 20px var(--dark-shadow);
+}
+
+.certification-card h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: var(--light-heading);
+    transition: color var(--transition-speed);
+}
+body.dark-mode .certification-card h3 {
+    color: var(--dark-heading);
+}
+
+.certification-card p {
+    font-size: 0.95em;
+    color: var(--light-secondary-accent);
+    margin-bottom: 20px;
+    transition: color var(--transition-speed);
+}
+body.dark-mode .certification-card p {
+    color: var(--dark-secondary-accent);
+}
+
+
+/* Contact Section */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--light-border);
+    border-radius: var(--border-radius);
+    font-family: var(--font-secondary);
+    font-size: 1em;
+    background-color: var(--light-background);
+    color: var(--light-text);
+    transition: border-color var(--transition-speed), background-color var(--transition-speed), box-shadow 0.2s ease-in-out;
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+    border: 1px solid var(--dark-border);
+    background-color: var(--dark-card-background);
+    color: var(--dark-text);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--light-accent);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+body.dark-mode .contact-form input:focus,
+body.dark-mode .contact-form textarea:focus {
+    border-color: var(--dark-accent);
+    box-shadow: 0 0 0 3px rgba(146, 180, 236, 0.2);
+}
+
+
+.social-links {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.1em;
+}
+
+.social-links a {
+    color: var(--light-accent);
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+    transition: color var(--transition-speed), transform 0.2s ease-out;
+}
+body.dark-mode .social-links a {
+    color: var(--dark-accent);
+}
+
+.social-links a:hover {
+    color: #0056b3; /* Darker accent on hover */
+    transform: translateY(-2px);
+}
+body.dark-mode .social-links a:hover {
+    color: #728ec6;
+}
+.social-links a:focus-visible { /* For accessibility */
+    outline: 2px solid var(--light-accent);
+    outline-offset: 3px;
+}
+body.dark-mode .social-links a:focus-visible {
+    outline-color: var(--dark-accent);
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--light-card-background);
+    color: var(--light-text);
+    box-shadow: 0 -2px 10px var(--light-shadow);
+    margin-top: 50px;
+    transition: background-color var(--transition-speed), color var(--transition-speed), box-shadow var(--transition-speed);
+}
+body.dark-mode footer {
+    background-color: var(--dark-card-background);
+    color: var(--dark-text);
+    box-shadow: 0 -2px 10px var(--dark-shadow);
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .container {
+        margin: 30px auto;
+        padding: 30px;
+    }
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    nav ul {
+        gap: 15px;
+        flex-wrap: wrap; /* Allow nav items to wrap */
+        justify-content: center;
+    }
+    .hero h2 {
+        font-size: 2.8em;
+    }
+    .hero p {
+        font-size: 1.2em;
+    }
+    .hero-content-wrapper { /* Ensure this wraps now */
+        flex-direction: column; /* Stack text and image vertically */
+        gap: 30px; /* Reduced gap for smaller screens */
+    }
+    .hero-text-area, .hero-image-area { /* Revert text and image alignment for mobile */
+        text-align: center;
+        transform: none;
+        animation: none;
+        width: 100%; /* Ensure they take full width */
+        min-width: unset;
+    }
+    .hero-name { /* Center hero name on small screens */
+        text-align: center;
+        font-size: 3.5em; /* Adjust size for mobile */
+    }
+    .hero-role, .greeting, .hero-description { /* Center these too */
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-social-links { /* Center social links */
+        justify-content: center;
+    }
+    .download-cv-btn { /* Center the download button */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    /* About section responsive adjustments */
+    .about-content {
+        flex-direction: column; /* Ensure elements stack vertically on small screens */
+        align-items: center; /* Center elements when stacked */
+        gap: 30px;
+    }
+    .about-text {
+        order: 2; /* Text comes after image/buttons when stacked */
+        text-align: center; /* Center text on small screens */
+    }
+    .about-image-and-buttons {
+        order: 1; /* Image/buttons come first when stacked */
+        width: 100%; /* Take full width */
+    }
+    .about-actions {
+        max-width: 300px; /* Limit button group width on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2em;
+    }
+    .hero {
+        padding: 80px 15px;
+        min-height: 80vh; /* Adjust hero height for smaller screens */
+    }
+    .hero h2 {
+        font-size: 2.5em;
+    }
+    .hero p {
+        font-size: 1em;
+    }
+
+    .profile-hex-img {
+        width: 280px; /* Smaller image on mobile */
+        height: 280px;
+    }
+
+    .profile-pic {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .project-grid, .experience-grid, .certifications-grid, .skills-section {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+    .project-card, .experience-card, .certification-card {
+        padding: 20px;
+    }
+    .contact-form {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .btn-small {
+        padding: 6px 12px;
+        font-size: 0.85em;
+    }
+    .custom-cursor {
+        width: 15px; /* Smaller cursor on small screens */
+        height: 15px;
+    }
+}
