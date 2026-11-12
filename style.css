@@ -342,7 +342,7 @@ body.dark-mode #darkModeToggle:hover {
     font-size: 2em;
     color: white;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 .hero-role .highlight {
