@@ -348,6 +348,7 @@ body.dark-mode #darkModeToggle:hover {
 .hero-role .highlight {
     color: var(--dark-accent); /* Use the vibrant accent color for 'Developer' */
     font-weight: 700;
+    text-align: center;
 }
 
 .hero-description {
