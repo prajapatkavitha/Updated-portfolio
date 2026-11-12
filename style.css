@@ -313,7 +313,7 @@ body.dark-mode #darkModeToggle:hover {
 .hero-text-area { /* Container for all left-aligned text and buttons */
     flex: 1;
     min-width: 350px; /* Ensure enough space for text */
-    text-align: center;
+    text-align: left;
     /* Animations can be added here if desired, similar to original .hero-text-content */
 }
 
